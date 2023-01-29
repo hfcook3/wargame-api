@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WargameApi.Models;
+namespace WargameApi.Models.Entities;
 
-public class Keyword
+public class SpecialRule
 {
     public int Id { get; set; }
     

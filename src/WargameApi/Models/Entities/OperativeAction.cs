@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WargameApi.Models;
+namespace WargameApi.Models.Entities;
 
 public record OperativeAction
 {

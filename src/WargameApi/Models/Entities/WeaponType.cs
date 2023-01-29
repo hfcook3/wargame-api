@@ -1,4 +1,4 @@
-namespace WargameApi.Models;
+namespace WargameApi.Models.Entities;
 
 public enum WeaponType
 {

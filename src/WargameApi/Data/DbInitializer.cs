@@ -1,4 +1,5 @@
 using WargameApi.Models;
+using WargameApi.Models.Entities;
 
 namespace WargameApi.Data;
 

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WargameApi.Models;
+namespace WargameApi.Models.Entities;
 
 public record Weapon
 {
@@ -25,7 +25,7 @@ public record Weapon
     
     public ICollection<SpecialRule>? SpecialRules { get; set; }
     
-    public ICollection<SpecialRule>? CriticalHitRules { get; set; }
+    public ICollection<CriticalHitRule>? CriticalHitRules { get; set; }
     
     public ICollection<Operative>? Operatives { get; set; }
 }

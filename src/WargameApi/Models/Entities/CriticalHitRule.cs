@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WargameApi.Models;
+namespace WargameApi.Models.Entities;
 
-public class SpecialRule
+public class CriticalHitRule
 {
     public int Id { get; set; }
     

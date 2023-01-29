@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Local": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:5105/swagger/index.html",
+      "applicationUrl": "http://localhost:5105",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__KillTeamContext": "Host=localhost;Port=5431;Database=kill-team;User ID=postgres;Password=sillylocalpassword"
+      }
+    }
+  }
+}
