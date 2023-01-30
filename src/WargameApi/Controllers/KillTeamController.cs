@@ -39,7 +39,7 @@ public class KillTeamController : ControllerBase
     [Route("getById")]
     public ActionResult<KillTeam> GetKillTeamById([Required]int id)
     {
-        var result = _killTeamService.GetById(id);
+        var result = _killTeamService.GetFullKillTeamById(id);
         if (result == null)
         {
             return NotFound();

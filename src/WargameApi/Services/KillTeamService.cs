@@ -8,7 +8,7 @@ namespace WargameApi.Services;
 public interface IKillTeamService
 {
     IEnumerable<KillTeam> GetAll();
-    KillTeam? GetById(int id);
+    KillTeam? GetFullKillTeamById(int id);
 }
 
 public class KillTeamService : IKillTeamService
@@ -23,23 +23,11 @@ public class KillTeamService : IKillTeamService
     public IEnumerable<KillTeam> GetAll()
     {
         return _killTeamContext.KillTeams
-            .Include(team => team.Operatives)
-                .ThenInclude(operative => operative.SpecialRules)
-            .Include(team => team.Operatives)
-                .ThenInclude(operative => operative.Weapons)
-                    .ThenInclude(weapon => weapon.SpecialRules)
-            .Include(team => team.Operatives)
-                .ThenInclude(operative => operative.Weapons)
-                    .ThenInclude(weapon => weapon.CriticalHitRules)
-            .Include(team => team.Operatives)
-                .ThenInclude(operative => operative.Keywords)
-            .Include(team => team.Operatives)
-                .ThenInclude(operative => operative.SpecialActions)
             .AsNoTracking()
             .ToList();
     }
 
-    public KillTeam? GetById(int id)
+    public KillTeam? GetFullKillTeamById(int id)
     {
         return _killTeamContext.KillTeams
             .Include(team => team.Operatives)

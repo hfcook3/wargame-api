@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{844772
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{41EE0A29-6DD9-43C9-B366-7685A4BDEE84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "test\IntegrationTests\IntegrationTests.csproj", "{67F3FC72-FE0D-46FB-9764-E6A9F81293FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,8 +34,13 @@ Global
 		{8077C384-A1ED-487F-8E5B-EC99D02808E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8077C384-A1ED-487F-8E5B-EC99D02808E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8077C384-A1ED-487F-8E5B-EC99D02808E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F3FC72-FE0D-46FB-9764-E6A9F81293FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F3FC72-FE0D-46FB-9764-E6A9F81293FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F3FC72-FE0D-46FB-9764-E6A9F81293FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F3FC72-FE0D-46FB-9764-E6A9F81293FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8077C384-A1ED-487F-8E5B-EC99D02808E4} = {D8B25F14-6D3A-4F0A-ADAA-061EA747B4E7}
+		{67F3FC72-FE0D-46FB-9764-E6A9F81293FF} = {41EE0A29-6DD9-43C9-B366-7685A4BDEE84}
 	EndGlobalSection
 EndGlobal
