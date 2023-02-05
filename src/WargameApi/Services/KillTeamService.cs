@@ -9,6 +9,7 @@ public interface IKillTeamService
 {
     IEnumerable<KillTeam> GetAll();
     KillTeam? GetFullKillTeamById(int id);
+    KillTeam AddKillTeam(string name);
 }
 
 public class KillTeamService : IKillTeamService
@@ -44,5 +45,13 @@ public class KillTeamService : IKillTeamService
                 .ThenInclude(operative => operative.SpecialActions)
             .AsNoTracking()
             .FirstOrDefault(team => team.Id == id);
+    }
+
+    public KillTeam AddKillTeam(string name)
+    {
+        var newKillTeam = _killTeamContext.KillTeams.Add(new KillTeam { Name = name });
+        _killTeamContext.SaveChanges();
+
+        return newKillTeam.Entity;
     }
 }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WargameApi.Models.Entities;
+namespace WargameApi.Models.Entities.KillTeams;
 
 public class CriticalHitRule
 {

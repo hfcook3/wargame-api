@@ -37,7 +37,7 @@ public class KillTeamController : ControllerBase
     [HttpGet]
     [AllowAnonymous]
     [Route("getById")]
-    public ActionResult<KillTeam> GetKillTeamById([Required]int id)
+    public ActionResult<KillTeam> GetKillTeamById([Required] [FromQuery] int id)
     {
         var result = _killTeamService.GetFullKillTeamById(id);
         if (result == null)
@@ -46,5 +46,15 @@ public class KillTeamController : ControllerBase
         }
         
         return Ok(result);
+    }
+
+    [HttpPost]
+    [Authorize]
+    [Route("addKillTeam")]
+    public ActionResult<KillTeam> AddKillTeam([Required] string name)
+    {
+        var newKillTeam = _killTeamService.AddKillTeam(name);
+
+        return CreatedAtAction("GetKillTeamById", new {id = newKillTeam.Id});
     }
 }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using WargameApi.Models.Entities.KillTeams;
 
 namespace WargameApi.Models.Entities;
 
