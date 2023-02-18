@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WargameApi.Models.Entities.Identity;
+namespace WargameApi.Auth.Models;
 
 public class AuthRequest
 {

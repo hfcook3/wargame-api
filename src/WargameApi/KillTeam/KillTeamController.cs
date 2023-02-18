@@ -1,11 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WargameApi.Models;
-using WargameApi.Models.Entities;
-using WargameApi.Services;
 
-namespace WargameApi.Controllers;
+namespace WargameApi.KillTeam;
 
 [ApiController]
 [Route("[controller]")]
@@ -25,7 +23,7 @@ public class KillTeamController : ControllerBase
     [HttpGet]
     [AllowAnonymous]
     [Route("getAll")]
-    public ActionResult<IEnumerable<KillTeam>> GetKillTeams()
+    public ActionResult<IEnumerable<KillTeam.Models.KillTeam>> GetKillTeams()
     {
         return Ok(_killTeamService.GetAll());
     }
@@ -37,7 +35,7 @@ public class KillTeamController : ControllerBase
     [HttpGet]
     [AllowAnonymous]
     [Route("getById")]
-    public ActionResult<KillTeam> GetKillTeamById([Required] [FromQuery] int id)
+    public ActionResult<KillTeam.Models.KillTeam> GetKillTeamById([Required] [FromQuery] int id)
     {
         var result = _killTeamService.GetFullKillTeamById(id);
         if (result == null)
@@ -49,9 +47,9 @@ public class KillTeamController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = $"{JwtBearerDefaults.AuthenticationScheme},ApiKey")]
     [Route("addKillTeam")]
-    public ActionResult<KillTeam> AddKillTeam([Required] string name)
+    public ActionResult<KillTeam.Models.KillTeam> AddKillTeam([Required] string name)
     {
         var newKillTeam = _killTeamService.AddKillTeam(name);
 

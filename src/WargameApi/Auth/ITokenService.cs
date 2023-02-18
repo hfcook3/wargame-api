@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
-using WargameApi.Models.Entities.Identity;
+using WargameApi.Auth.Models;
 
-namespace WargameApi.Services;
+namespace WargameApi.Auth;
 
 public interface ITokenService
 {

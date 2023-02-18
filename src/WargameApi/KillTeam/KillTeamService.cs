@@ -1,15 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using WargameApi.Data;
-using WargameApi.Models;
-using WargameApi.Models.Entities;
 
-namespace WargameApi.Services;
+namespace WargameApi.KillTeam;
 
 public interface IKillTeamService
 {
-    IEnumerable<KillTeam> GetAll();
-    KillTeam? GetFullKillTeamById(int id);
-    KillTeam AddKillTeam(string name);
+    IEnumerable<KillTeam.Models.KillTeam> GetAll();
+    KillTeam.Models.KillTeam? GetFullKillTeamById(int id);
+    KillTeam.Models.KillTeam AddKillTeam(string name);
 }
 
 public class KillTeamService : IKillTeamService
@@ -21,14 +19,14 @@ public class KillTeamService : IKillTeamService
         _killTeamContext = killTeamContext;
     }
 
-    public IEnumerable<KillTeam> GetAll()
+    public IEnumerable<KillTeam.Models.KillTeam> GetAll()
     {
         return _killTeamContext.KillTeams
             .AsNoTracking()
             .ToList();
     }
 
-    public KillTeam? GetFullKillTeamById(int id)
+    public KillTeam.Models.KillTeam? GetFullKillTeamById(int id)
     {
         return _killTeamContext.KillTeams
             .Include(team => team.Operatives)
@@ -47,9 +45,9 @@ public class KillTeamService : IKillTeamService
             .FirstOrDefault(team => team.Id == id);
     }
 
-    public KillTeam AddKillTeam(string name)
+    public KillTeam.Models.KillTeam AddKillTeam(string name)
     {
-        var newKillTeam = _killTeamContext.KillTeams.Add(new KillTeam { Name = name });
+        var newKillTeam = _killTeamContext.KillTeams.Add(new KillTeam.Models.KillTeam { Name = name });
         _killTeamContext.SaveChanges();
 
         return newKillTeam.Entity;

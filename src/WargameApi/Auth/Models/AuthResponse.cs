@@ -1,4 +1,4 @@
-namespace WargameApi.Models.Entities.Identity;
+namespace WargameApi.Auth.Models;
 
 public class AuthResponse
 {

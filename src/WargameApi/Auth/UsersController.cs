@@ -1,10 +1,8 @@
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WargameApi.Models.Entities.Identity;
-using WargameApi.Services;
+using WargameApi.Auth.Models;
 
-namespace WargameApi.Controllers;
+namespace WargameApi.Auth;
 
 [ApiController]
 [Route("[controller]")]
@@ -12,11 +10,13 @@ public class UsersController: ControllerBase
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly JwtService _jwtService;
+    private readonly ApiKeyService _apiKeyService;
 
-    public UsersController(UserManager<IdentityUser> userManager, JwtService jwtService)
+    public UsersController(UserManager<IdentityUser> userManager, JwtService jwtService, ApiKeyService apiKeyService)
     {
         _userManager = userManager;
         _jwtService = jwtService;
+        _apiKeyService = apiKeyService;
     }
     
     [HttpPost]
@@ -73,5 +73,26 @@ public class UsersController: ControllerBase
         }
 
         return Ok(_jwtService.CreateToken(user));
+    }
+
+    [HttpPost("apiKey")]
+    public async Task<ActionResult<UserApiKey>> CreateApiKey(AuthRequest request)
+    {
+        var user = await _userManager.FindByNameAsync(request.UserName);
+
+        if (user == null)
+        {
+            return BadRequest("Incorrect username and/or password");
+        }
+
+        var pwIsValid = await _userManager.CheckPasswordAsync(user, request.Password);
+
+        
+        if (!pwIsValid)
+        {
+            return BadRequest("Incorrect username and/or password");
+        }
+
+        return Ok(_apiKeyService.CreateApiKey(user));
     }
 }

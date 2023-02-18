@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WargameApi.Models.Entities.KillTeams;
+namespace WargameApi.KillTeam.Models;
 
-public class CriticalHitRule
+public class Keyword
 {
     public int Id { get; set; }
     

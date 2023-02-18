@@ -1,4 +1,4 @@
-namespace WargameApi.Models.Entities;
+namespace WargameApi.KillTeam.Models;
 
 public enum WeaponType
 {

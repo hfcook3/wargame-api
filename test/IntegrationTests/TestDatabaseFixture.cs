@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Respawn;
 using WargameApi.Data;
-using WargameApi.Models.Entities;
+using WargameApi.KillTeam.Models;
 
 namespace IntegrationTests;
 

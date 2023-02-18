@@ -1,7 +1,6 @@
 using System.Linq;
-using System.Threading.Tasks;
-using WargameApi.Models.Entities;
-using WargameApi.Services;
+using WargameApi.KillTeam;
+using WargameApi.KillTeam.Models;
 using Xunit;
 
 namespace IntegrationTests.Contexts.KillTeamServiceTests;

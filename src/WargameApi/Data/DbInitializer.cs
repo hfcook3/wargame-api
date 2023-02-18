@@ -1,5 +1,4 @@
-using WargameApi.Models;
-using WargameApi.Models.Entities;
+using WargameApi.KillTeam.Models;
 
 namespace WargameApi.Data;
 
@@ -63,7 +62,7 @@ public class DbInitializer
             }
         };
 
-        var kommandoKillTeam = new KillTeam
+        var kommandoKillTeam = new KillTeam.Models.KillTeam
         {
             Name = "Kommandos",
             Operatives = new List<Operative>

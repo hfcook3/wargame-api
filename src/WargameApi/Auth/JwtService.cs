@@ -3,9 +3,9 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using WargameApi.Models.Entities.Identity;
+using WargameApi.Auth.Models;
 
-namespace WargameApi.Services;
+namespace WargameApi.Auth;
 
 public class JwtService : ITokenService
 {

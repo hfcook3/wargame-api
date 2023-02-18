@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using WargameApi.Models.Entities.KillTeams;
 
-namespace WargameApi.Models.Entities;
+namespace WargameApi.KillTeam.Models;
 
 public record Weapon
 {

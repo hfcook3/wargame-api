@@ -1,12 +1,14 @@
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using WargameApi.Auth;
 using WargameApi.Data;
-using WargameApi.Services;
+using WargameApi.KillTeam;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,10 +23,19 @@ builder.Services.AddSwaggerGen(option =>
     {
         Type = SecuritySchemeType.Http,
         Description = "Please enter a valid JWT",
-        Name = "Authorization",
+        Name = "JWT Authorization",
         In = ParameterLocation.Header,
         Scheme = "Bearer",
-        BearerFormat = "JWT",
+        BearerFormat = "JWT"
+    });
+    
+    option.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.ApiKey,
+        Description = "Please enter a valid API key",
+        Name = "Api-Key",
+        In = ParameterLocation.Header,
+        Scheme = "ApiKey"
     });
     
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -39,11 +50,23 @@ builder.Services.AddSwaggerGen(option =>
                 }
             },
             Array.Empty<string>()
+        },
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="ApiKey"
+                }
+            },
+            Array.Empty<string>()
         }
     });
 });
 
 builder.Services.AddTransient<JwtService>();
+builder.Services.AddTransient<ApiKeyService>();
 
 builder.Services
     .AddIdentityCore<IdentityUser>(options => {
@@ -73,7 +96,11 @@ builder.Services
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty)
             )
         };
-    });
+    })
+    .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(
+        "ApiKey",
+        _ => { }
+    );
 
 builder.Services.AddDbContext<KillTeamContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("KillTeamContext")));
